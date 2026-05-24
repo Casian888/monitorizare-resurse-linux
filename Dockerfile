@@ -1,14 +1,12 @@
-
 FROM python:3.9-slim
-
 
 WORKDIR /app
 
 
-RUN pip install psutil matplotlib plotext
+RUN apt-get update && apt-get install -y python3-tk && rm -rf /var/lib/apt/lists/*
 
+
+RUN pip install psutil matplotlib
 
 COPY monitor.py .
-
-
 CMD ["python", "-u", "monitor.py"]
