@@ -1,11 +1,14 @@
-# Folosim o imagine de baza usoara de Python
+
 FROM python:3.9-slim
 
-# Setam directorul de lucru in interiorul containerului
+# directorul in care lucreaza containerul
 WORKDIR /app
 
-# Copiem scriptul Python din masina gazda in container
+# instalare bib necesare
+RUN pip install psutil matplotlib
+
+# copy la scriptul in container
 COPY monitor.py .
 
-# Comanda care se va executa la pornirea containerului
+# rulam aplicatia fara buffer
 CMD ["python", "-u", "monitor.py"]
