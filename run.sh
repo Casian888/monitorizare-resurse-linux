@@ -1,19 +1,15 @@
 #!/bin/bash
-# automatizarea build-ului rulare save logurilor si a graficului
 
 NumeImagine="system-monitor-app"
 NumeContainer="statistici-rulare"
-FisierLog="rezultate_statistici.txt"
 
-echo "1. Construim imaginea Docker (poate dura un timp)..."
+echo "1. Construim imaginea Docker..."
 docker build -t $NumeImagine .
 
-echo "2. Rulam containerul..."
-# -v $(pwd):/app 
-# | tee $FisierLog 
-docker run --name $NumeContainer --rm -v $(pwd):/app $NumeImagine | tee $FisierLog
+echo "2. Rulam containerul cu volum conectat..."
+
+docker run --name $NumeContainer --rm -v $(pwd):/app $NumeImagine
 
 echo ""
-echo "3. Rularea s-a terminat! Verifica folderul curent pentru rezultate:"
-echo "   -> Fisierul imagine: grafic_resurse.png"
-echo "   -> Fisierul log: $FisierLog"
+echo "3. Terminat! Fisierele generate ('rezultate_statistici.txt' si 'grafic_resurse.png') sunt aici:"
+ls -la | grep -E "grafic_resurse.png|rezultate_statistici.txt"
