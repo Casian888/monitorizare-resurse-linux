@@ -39,11 +39,11 @@ if __name__ == "__main__":
         with open(fisier_log, 'a') as f:
             f.write(f"{timp_curent} | CPU: {cpu_pct}% | RAM: {ram_pct}%\n")
         
-        # --- PLOTARE LIVE ÎN TERMINAL (ÎMBUNĂTĂȚITĂ) ---
+        #  
         plt_term.clear_terminal() 
         plt_term.theme("pro") # Temă elegantă adaptată pentru terminal
         
-        # Folosim markerul 'braille' pentru linii mai fluide și continue
+        #  
         plt_term.plot(timpi, cpu_utilizat, label='CPU (%)', color='red', marker='braille')
         plt_term.plot(timpi, ram_utilizat, label='RAM (%)', color='cyan', marker='braille')
         
